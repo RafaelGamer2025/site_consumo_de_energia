@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Neo Energy</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/style.css') }}">
+
+<script src=
+"https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+</head>
+
+<body>
+
+<canvas id="rain"></canvas>
+
+<div class="container">
+
+<h1>電力システム ⚡</h1>
+
+<div class="monitor">
+
+<h2 id="cpu">CPU</h2>
+
+<h2 id="ram">RAM</h2>
+
+<h2 id="watts">WATTS</h2>
+
+</div>
+
+<div class="calc">
+<input id="nomeInput"
+placeholder="Nome do aparelho">
+
+<input id="wattsInput"
+placeholder="Watts">
+
+<input id="horasInput"
+placeholder="Horas">
+
+<input id="diasInput"
+placeholder="Dias">
+
+<input id="quantidadeInput"
+placeholder="Quantidade">
+
+<input id="casaInput"
+placeholder="Tamanho da casa m²">
+
+<input id="tarifaInput"
+placeholder="Tarifa kWh">
+
+<button onclick="calcular()">
+Calcular
+</button>
+
+<div id="aparelhos"></div>
+
+<button onclick="adicionarAparelho()">
++ Adicionar aparelho
+</button>
+
+<div id="resultado"></div>
+
+<div id="ideias"></div>
+
+</div>
+
+<canvas id="grafico"></canvas>
+
+<div id="aparelhos"></div>
+
+</div>
+
+<script src=
+"{{ url_for(
+'static',
+filename='js/script.js') }}">
+</script>
+
+<script src=
+"{{ url_for(
+'static',
+filename='effects/rain.js') }}">
+</script>
+
+</body>
+</html>
