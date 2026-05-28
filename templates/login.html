@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Neo Energy Login</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Neo Energy ⚡</h1>
+
+<form action="" method="post" class="form">
+
+<label for="name">
+Nome completo
+</label>
+
+<input
+type="text"
+name="name"
+id="name"
+placeholder="Digite seu nome completo"
+required
+>
+
+<label for="email">
+Email
+</label>
+
+<h>"recomendado colocar seu email verdadeiro por surpresa"</h>
+
+<input
+type="email"
+name="email"
+id="email"
+placeholder="Digite seu email"
+required
+>
+
+<label for="energia">
+Como está sua energia?
+</label>
+
+<select
+name="energia"
+id="energia"
+>
+
+<option>
+🔥 Alta
+</option>
+
+<option>
+⚡ Média
+</option>
+
+<option>
+💤 Baixa
+</option>
+
+</select>
+
+<button
+class="button"
+type="submit"
+>
+
+Tudo pronto!
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

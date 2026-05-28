@@ -7,6 +7,8 @@
 
 <title>Neo Energy</title>
 
+
+
 <link rel="stylesheet"
 href="{{ url_for(
 'static',
@@ -19,6 +21,19 @@ filename='css/style.css') }}">
 </head>
 
 <body>
+
+
+    <h2>
+        👤 {{ nome }}
+        </h2>
+
+        <h3>
+        ⚡ Energia: {{ energia }}
+        </h3>
+
+        <a href="/logout">
+        Sair
+        </a>    
 
 <canvas id="rain"></canvas>
 

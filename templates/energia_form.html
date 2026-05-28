@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Sua Energia</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<canvas id="rain"></canvas>
+
+<div class="container">
+
+<h1>⚡ Como está sua energia hoje?</h1>
+
+<form action="" method="post" class="form">
+
+<label>
+Nível de energia
+</label>
+
+<select name="energia">
+
+<option>Baixa</option>
+
+<option>Média</option>
+
+<option>Alta</option>
+
+<option>Ultra</option>
+
+</select>
+
+<button class="button" type="submit">
+Entrar no Sistema
+</button>
+
+</form>
+
+</div>
+
+<script src=
+"{{ url_for(
+'static',
+filename='effects/rain.js') }}">
+</script>
+
+</body>
+</html>
