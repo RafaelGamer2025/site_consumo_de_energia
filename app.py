@@ -16,6 +16,8 @@ from funcoes import gerar_ideias
 
 app = Flask(__name__)
 
+import json 
+
 # ====================================
 # CHAVE SESSÃO
 # ====================================
@@ -27,6 +29,17 @@ app.secret_key = "neo_energy"
 # ====================================
 
 EMAIL = "sobrenomecleitan@gmail.com"
+
+def verificar_e_criar_json():
+    # Verifica se o arquivo NÃO existe
+    if not os.path.exists(ARQUIVO_USERS):
+        # Cria o arquivo com uma lista vazia dentro
+        with open(ARQUIVO_USERS, "w", encoding="utf-8") as arquivo:
+            json.dump([], arquivo, indent=4)
+        print(f"O arquivo {ARQUIVO_USERS} foi criado com sucesso!")
+
+# Executa a função assim que o script roda
+verificar_e_criar_json()
 
 # SENHA DE APP GOOGLE
 SENHA = "COLOQUE_SEU_CODIGO_DE_EMAIL"
@@ -80,7 +93,6 @@ def enviar_email(destino, assunto, mensagem):
 # ====================================
 # LOGIN
 # ====================================
-
 @app.route("/", methods=["GET", "POST"])
 def login():
 
@@ -92,20 +104,37 @@ def login():
 
         energia = request.form.get("energia")
 
-        # SALVA SESSÃO
+        # 1. CRIA O DICIONÁRIO COM OS DADOS DO NOVO USUÁRIO
+        novo_usuario = {
+            "nome": nome,
+            "email": email,
+            "energia": energia
+        }
+
+        # 2. ABRE O ARQUIVO, LÊ A LISTA ATUAL E ADICIONA O NOVO USUÁRIO
+        try:
+            with open(ARQUIVO_USERS, "r", encoding="utf-8") as arquivo:
+                lista_usuarios = json.load(arquivo)
+        except Exception:
+            lista_usuarios = [] # Garante uma lista vazia se houver erro ao ler
+
+        lista_usuarios.append(novo_usuario)
+
+        # 3. SALVA A LISTA ATUALIZADA DE VOLTA NO ARQUIVO
+        with open(ARQUIVO_USERS, "w", encoding="utf-8") as arquivo:
+            json.dump(lista_usuarios, arquivo, indent=4, ensure_ascii=False)
+
+        # SALVA SESSÃO (Mantém o usuário logado no navegador)
         session["nome"] = nome
         session["email"] = email
         session["energia"] = energia
 
         # ENVIA EMAIL
         enviar_email(
-
             email,
-
             "⚡ Bem-vindo ao Neo Energy",
-
             f"""
-Olá {nome}, boas vinda!
+Olá {nome}, boas vindas!
 
 Obrigado por entrar no Neo Energy ⚡
 
