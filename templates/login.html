@@ -2,87 +2,43 @@
 <html lang="pt-br">
 
 <head>
-
-<meta charset="UTF-8">
-
-<title>Neo Energy Login</title>
-
-<link rel="stylesheet"
-href="{{ url_for(
-'static',
-filename='css/style.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neo Energy: entre para calcular seu consumo e economizar energia em seu celular.">
+    <title>Neo Energy | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
+    <div class="container container-tight">
+        <header class="hero">
+            <p class="eyebrow">Controle rápido e seguro</p>
+            <h1>Entre e veja sua conta de energia em segundos</h1>
+            <p class="hero-text">Acesse sua conta, calcule gastos e receba dicas de economia com foco total em celular.</p>
+            <p class="contact-hero">Email: <a href="mailto:contato@neoenergy.com">contato@neoenergy.com</a> | WhatsApp: <a href="https://wa.me/5511999999999">11 99999-9999</a></p>
+        </header>
 
-<div class="container">
+        <main class="card card-form">
+            <h2>Login</h2>
+            {% if error %}
+            <p class="alert">{{ error }}</p>
+            {% endif %}
+            <form action="{{ url_for('login') }}" method="post">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="seu@email.com" required>
 
-<h1>⚡ Neo Energy ⚡</h1>
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" id="senha" placeholder="Senha segura" required>
 
-<form action="" method="post" class="form">
+                <button class="button" type="submit">Entrar Agora</button>
+            </form>
+            <p class="small-text">Ainda não tem conta? <a href="{{ url_for('register') }}">Crie sua conta</a></p>
+        </main>
 
-<label for="name">
-Nome completo
-</label>
-
-<input
-type="text"
-name="name"
-id="name"
-placeholder="Digite seu nome completo"
-required
->
-
-<label for="email">
-Email
-</label>
-
-<h>"recomendado colocar seu email verdadeiro por surpresa"</h>
-
-<input
-type="email"
-name="email"
-id="email"
-placeholder="Digite seu email"
-required
->
-
-<label for="energia">
-Como está sua energia?
-</label>
-
-<select
-name="energia"
-id="energia"
->
-
-<option>
-🔥 Alta
-</option>
-
-<option>
-⚡ Média
-</option>
-
-<option>
-💤 Baixa
-</option>
-
-</select>
-
-<button
-class="button"
-type="submit"
->
-
-Tudo pronto!
-
-</button>
-
-</form>
-
-</div>
-
+        <footer class="footer-compact">
+            <p>Design mobile-first, carregamento rápido e navegação clara.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='effects/rain.js') }}"></script>
 </body>
 </html>

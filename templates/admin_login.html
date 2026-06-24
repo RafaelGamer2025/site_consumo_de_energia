@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login administrativo Neo Energy.">
+    <title>Neo Energy | Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container container-tight">
+        <main class="card card-form">
+            <h2>Login Administrador</h2>
+            {% if error %}
+            <p class="alert">{{ error }}</p>
+            {% endif %}
+            <form action="{{ url_for('admin') }}" method="post">
+                <label for="senha">Senha administrativa</label>
+                <input type="password" name="senha" id="senha" placeholder="Senha do admin" required>
+                <button class="button" type="submit">Acessar painel</button>
+            </form>
+            <p class="small-text"><a href="{{ url_for('login') }}">Voltar ao login</a></p>
+        </main>
+    </div>
+</body>
+</html>

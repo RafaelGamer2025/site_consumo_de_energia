@@ -2,110 +2,114 @@
 <html lang="pt-br">
 
 <head>
-
-<meta charset="UTF-8">
-
-<title>Neo Energy</title>
-
-
-
-<link rel="stylesheet"
-href="{{ url_for(
-'static',
-filename='css/style.css') }}">
-
-<script src=
-"https://cdn.jsdelivr.net/npm/chart.js">
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel Neo Energy: controle seu consumo de energia, veja economia e faça cálculos rápidos no celular.">
+    <title>Neo Energy | Painel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
+    <div class="topbar">
+        <div class="perfil">
+            <p class="mini-label">Usuário</p>
+            <h2>{{ nome }}</h2>
+            <p class="mini-label">Energia: {{ energia }}</p>
+        </div>
+        <div class="menu-topo">
+            {% if is_admin %}
+            <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+            <a href="{{ url_for('usuarios') }}">Usuários</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </div>
+    </div>
 
+    <canvas id="rain"></canvas>
 
-    <h2>
-        👤 {{ nome }}
-        </h2>
+    <div class="container">
+        <section class="hero-card card">
+            <h1>Controle de energia inteligente</h1>
+            <p class="hero-text">Calcule seu consumo, veja a variação de watts e receba dicas para reduzir sua conta.</p>
+            <div class="hero-actions">
+                <a class="button" href="#calc">Calcular agora</a>
+                <a class="button button-secondary" href="mailto:contato@neoenergy.com">Fale conosco</a>
+            </div>
+        </section>
 
-        <h3>
-        ⚡ Energia: {{ energia }}
-        </h3>
+        <section class="summary-grid">
+            <article class="small-card">
+                <h3>Velocidade</h3>
+                <p>Carregamento rápido e layout otimizado para celular.</p>
+            </article>
+            <article class="small-card">
+                <h3>Segurança</h3>
+                <p>Dados de sessão protegidos e validação de entrada.</p>
+            </article>
+            <article class="small-card">
+                <h3>Suporte</h3>
+                <p><a href="mailto:contato@neoenergy.com">rafaelferrao2016@gmail.com</a> | <a href="https://wa.me/55119999999916">WhatsApp</a></p>
+            </article>
+        </section>
 
-        <a href="/logout">
-        Sair
-        </a>    
+        <section class="monitor card">
+            <h2>Monitor em tempo real</h2>
+            <div class="monitor-cards">
+                <div class="monitor-card"><strong id="cpu">CPU</strong></div>
+                <div class="monitor-card"><strong id="ram">RAM</strong></div>
+                <div class="monitor-card"><strong id="watts">WATTS</strong></div>
+            </div>
+        </section>
 
-<canvas id="rain"></canvas>
+        <section id="calc" class="card">
+            <h2>Calculadora de consumo</h2>
+            <div class="grid-form">
+                <input id="nomeInput" placeholder="Nome do aparelho" aria-label="Nome do aparelho">
+                <input id="wattsInput" placeholder="Watts" aria-label="Watts">
+                <input id="horasInput" placeholder="Horas por dia" aria-label="Horas por dia">
+                <input id="diasInput" placeholder="Dias por semana" aria-label="Dias por semana">
+                <input id="quantidadeInput" placeholder="Quantidade" aria-label="Quantidade">
+                <input id="casaInput" placeholder="Tamanho da casa m²" aria-label="Tamanho da casa">
+                <input id="tarifaInput" placeholder="Tarifa kWh" aria-label="Tarifa kWh">
+            </div>
+            <div class="actions-row">
+                <button class="button" onclick="calcular()">Calcular</button>
+                <button class="button button-secondary" onclick="adicionarAparelho()">+ Novo aparelho</button>
+            </div>
+            <div id="resultado" class="result-card"></div>
+            <div id="ideias" class="tips"></div>
+        </section>
 
-<div class="container">
+        <section class="card">
+            <h2>Últimos cálculos</h2>
+            {% if consumos %}
+                {% for c in consumos %}
+                <div class="usuario-card">
+                    <div>
+                        <h3>{{ c.nome_aparelho }}</h3>
+                        <p>{{ c.kwh }} kWh • R$ {{ c.preco }}</p>
+                    </div>
+                    <small>{{ c.quantidade }}x • {{ c.horas }}h/dia • {{ c.dias }} dias</small>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Sem cálculos ainda. Comece agora.</p>
+            {% endif %}
+        </section>
 
-<h1>電力システム ⚡</h1>
+        <section class="chart-card card">
+            <h2>Trajetória de watts</h2>
+            <canvas id="grafico"></canvas>
+        </section>
 
-<div class="monitor">
+        <footer class="footer">
+            <p><strong>Neo Energy</strong> — navegação em até 3 cliques, design mobile-first e foco em segurança.</p>
+            <p>Contato: <a href="mailto:contato@neoenergy.com">contato@neoenergy.com</a> | <a href="https://wa.me/55119999999916">WhatsApp</a></p>
+        </footer>
+    </div>
 
-<h2 id="cpu">CPU</h2>
-
-<h2 id="ram">RAM</h2>
-
-<h2 id="watts">WATTS</h2>
-
-</div>
-
-<div class="calc">
-<input id="nomeInput"
-placeholder="Nome do aparelho">
-
-<input id="wattsInput"
-placeholder="Watts">
-
-<input id="horasInput"
-placeholder="Horas">
-
-<input id="diasInput"
-placeholder="Dias">
-
-<input id="quantidadeInput"
-placeholder="Quantidade">
-
-<input id="casaInput"
-placeholder="Tamanho da casa m²">
-
-<input id="tarifaInput"
-placeholder="Tarifa kWh">
-
-<button onclick="calcular()">
-Calcular
-</button>
-
-<div id="aparelhos"></div>
-
-<button onclick="adicionarAparelho()">
-+ Adicionar aparelho
-</button>
-
-<div id="resultado"></div>
-
-<div id="ideias"></div>
-
-</div>
-
-<canvas id="grafico"></canvas>
-
-<div id="aparelhos"></div>
-
-</div>
-
-<script src=
-"{{ url_for(
-'static',
-filename='js/script.js') }}">
-</script>
-
-<script src=
-"{{ url_for(
-'static',
-filename='effects/rain.js') }}">
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='effects/rain.js') }}"></script>
 </body>
 </html>

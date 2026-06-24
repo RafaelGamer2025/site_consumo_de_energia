@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil do usuário Neo Energy.">
+    <title>Neo Energy | Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="perfil">
+            <p class="mini-label">Perfil</p>
+            <h2>{{ usuario.nome }}</h2>
+            <p>{{ usuario.email }}</p>
+        </div>
+        <div class="menu-topo">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="card">
+            <h2>Informações do usuário</h2>
+            <p><strong>Energia atual:</strong> {{ usuario.energia }}</p>
+            <p><strong>Email:</strong> {{ usuario.email }}</p>
+        </section>
+
+        <section class="card">
+            <h2>Consumos registrados</h2>
+            {% if consumos %}
+                {% for c in consumos %}
+                <div class="usuario-card">
+                    <div>
+                        <h3>{{ c.nome_aparelho }}</h3>
+                        <p>{{ c.kwh }} kWh • R$ {{ c.preco }}</p>
+                    </div>
+                    <small>{{ c.quantidade }}x • {{ c.horas }}h/dia • {{ c.dias }} dias</small>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Sem consumos registrados para este usuário.</p>
+            {% endif %}
+        </section>
+
+        <footer class="footer">
+            <p>Perfil seguro e acessível para revisão de consumo.</p>
+        </footer>
+    </div>
+</body>
+</html>
