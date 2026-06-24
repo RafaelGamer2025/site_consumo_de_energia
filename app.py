@@ -401,5 +401,8 @@ if __name__ == "__main__":
 
         "Servidor iniciado com sucesso."
     )
-
-    app.run(host="127.0.0.1",port=5000, debug=True, ssl_context="adhoc")
+    port = int(os.environ.get("PORT", 5000))
+    
+    # IMPORTANTE: Remova o ssl_context="adhoc" no deploy do Render.
+    # O Render já fornece HTTPS/SSL gratuitamente de forma automática.
+    app.run(host="0.0.0.0", port=port)
