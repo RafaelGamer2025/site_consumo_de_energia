@@ -163,6 +163,25 @@ button:hover {
     background: rgba(0, 238, 238, 0.08);
 }
 
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #050510;
+    background: linear-gradient(135deg, #00ffee, #0077ff);
+    box-shadow: 0 12px 24px rgba(0, 238, 238, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(0, 238, 238, 0.22);
+}
+
 .usuario-card,
 .monitor-card,
 .small-card {

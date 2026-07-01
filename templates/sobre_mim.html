@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio Central</title>
+    <!-- Vinculando o CSS na pasta informada anteriormente -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Topbar baseada nas classes do seu CSS -->
+    <header class="topbar">
+        <div class="perfil">
+            <span class="eyebrow" style="margin: 0;">STATUS: OPERACIONAL</span>
+            <div class="mini-label">Dev_Aleatorio, ou APENAS UM  // Portfólio</div>
+        </div>
+        <nav class="menu-topo">
+            <a href="#about">Sobre</a>
+            <a href="#skills">Habilidades</a>
+            <a href="#philosophy">Filosofia</a>
+        </nav>
+    </header>
+
+    <!-- Usando a classe container-tight para um visual centralizado e elegante -->
+    <main class="container-tight">
+        
+        <!-- Seção Hero casando com o cabeçalho original -->
+        <section id="about" class="hero-card" style="text-align: center;">
+            <div class="mini-label">SISTEMA CORE</div>
+            <h1>Desenvolvedor & Criador de Soluções</h1>
+            <p class="eyebrow" style="margin-top: 10px;">""Especialista"" em Automações e Códigos Aleatórios</p>
+        </section>
+
+        <!-- Seção Sobre Mim usando a estrutura de Card do novo CSS -->
+        <section class="card">
+            <div class="mini-label">LOG.TXT</div>
+            <h2 style="color: #00ffee; margin: 0 0 12px 0;">Sobre Mim</h2>
+            <p class="hero-text" style="margin-bottom: 15px;">
+                Sou um desenvolvedor movido pela curiosidade e pela arte, junto a aleatoriedade, de criar lógica. Meu foco não está em seguir padrões corporativos monótonos, mas sim em dar vida a ideias, resolver problemas complexos com <span style="font-family: monospace; color: #ff2828; background: rgba(255,40,40,0.08); padding: 2px 6px; border-radius: 4px;">funções autônomas</span> e arquitetar ferramentas inteligentes.
+            </p>
+            <p class="hero-text">
+                Seja um bot que automatiza tarefas repetitivas, rotinas de back-end independentes ou interfaces web completas, eu transformo café em linhas de código funcionais (mesmo que alguns desses projetos acabem guardados com carinho no meu repositório pessoal).
+            </p>
+        </section>
+
+        <!-- Seção O Que Eu Faço usando o Grid do novo CSS adaptado para monitoramento -->
+        <section id="skills" class="monitor">
+            <h2 style="margin-bottom: 5px;">O Que Eu Faço</h2>
+            <p class="small-text" style="margin-bottom: 20px; opacity: 0.8;">Módulos ativos desenvolvidos sob demanda:</p>
+            
+            <div class="monitor-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px;">
+                <div class="monitor-card" style="text-align: left;">
+                    <div class="eyebrow">MÓDULO 01</div>
+                    <h3 style="color: #00ffee; margin: 5px 0;">🤖 Bots Inteligentes</h3>
+                    <p class="small-text">Criação de robôs para automação de conversas, scraping de dados, notificações e integrações com plataformas (Discord e gmail).</p>
+                </div>
+                
+                <div class="monitor-card" style="text-align: left;">
+                    <div class="eyebrow">MÓDULO 02</div>
+                    <h3 style="color: #00ffee; margin: 5px 0;">⚙️ Funções Autônomas</h3>
+                    <p class="small-text">Desenvolvimento de scripts independentes e microserviços que rodam em segundo plano e resolvem problemas de forma transparente (as vezes).</p>
+                </div>
+                
+                <div class="monitor-card" style="text-align: left; grid-column: span 2;">
+                    <div class="eyebrow">MÓDULO 03</div>
+                    <h3 style="color: #00ffee; margin: 5px 0;">🌐 Sites & Web Apps</h3>
+                    <p class="small-text">Criação de interfaces web e plataformas completas sob medida.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Filosofia com estilo destacado (Result Card) -->
+        <section id="philosophy" class="result-card">
+            <div class="mini-label" style="color: #7be4ff;">DIRETRIZ PRINCIPAL</div>
+            <p class="hero-text" style="font-style: italic; font-size: 1.1rem; border-left: 3px solid #00ffee; padding-left: 15px; margin-top: 10px;">
+                "O melhor código é aquele que resolve um problema, automatiza o tédio ou simplesmente prova que uma ideia aleatória era perfeitamente possível."
+            </p>
+        </section>
+
+        <!-- Rodapé Compacto -->
+        <footer class="footer-compact" style="text-align: center; border-top: 1px solid rgba(0, 238, 238, 0.14); margin-top: 40px;">
+            <p>&copy; 2026 • Construído com HTML & CSS de alto desempenho.</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

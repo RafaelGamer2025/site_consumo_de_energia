@@ -324,7 +324,9 @@ def monitor():
     dados = monitor_pc()
 
     return jsonify(dados)
-
+@app.route("/sobre_mim")
+def sobre_mim():
+    return render_template("sobre_mim.html")
 # ====================================
 # CALCULAR
 # ====================================
